@@ -96,7 +96,7 @@ def euclidean_dist(x, y):
     dist = xx + yy
     # print("{:.3f}MB allocated".format(torch.cuda.memory_allocated() / 1024 ** 2))
     dist.addmm_(1, -2, x, y.t())
-    # print("{:.3f}MB allocated".format(torch.cuda.memory_allocated() / 1024 ** 2))
+    print("{:.3f}MB allocated".format(torch.cuda.memory_allocated() / 1024 ** 2))
     dist = dist.clamp(min=1e-12).sqrt()  # for numerical stability
     return dist
 

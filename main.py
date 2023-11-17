@@ -45,9 +45,9 @@ params, param_names = collect_params(model)
 testset = VKITTI('/HOMES/yigao/KITTI/sclaing_factor_dataset/', (192, 640))
 
 # testset = VKITTI('/HOMES/yigao/Downloads/eval_testset/NYU_Testset', 'full')
-testset_loader = DataLoader(testset, batch_size=2, shuffle=False, num_workers=2, pin_memory=True, drop_last=True)       # , drop_last=True
+testset_loader = DataLoader(testset, batch_size=2, shuffle=False, num_workers=1, pin_memory=True, drop_last=True)       # , drop_last=True
 
-
+    
 # Define loss function and optimizer for fine-tuning
 optimizer = optim.Adam(params, lr=0.0001, betas=(0.9, 0.999), weight_decay=0.0)
 # optimizer = optim.SGD(params, lr=0.001, weight_decay=0.0)
@@ -59,7 +59,7 @@ adapted_model.cuda()
 
 average_meter = AverageMeter()
 
-for epoch in range(1):
+for epoch in range(10):
     for i, data in enumerate(testset_loader):
         t0 = time.time()
         images, gts = data

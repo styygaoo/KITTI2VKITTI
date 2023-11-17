@@ -48,8 +48,8 @@ class GuideDepth(nn.Module):
 
         y = F.interpolate(y, scale_factor=2, mode='bilinear')
 
-        features = y                    # before up1    p3
-
+        # features = y                    # before up1    p3
+        #
 
         y = self.up_1(x_quarter, y)
 
@@ -64,7 +64,7 @@ class GuideDepth(nn.Module):
         y = F.interpolate(y, scale_factor=2, mode='bilinear')
 
 
-        # features = y                    # before up3    p1
+        features = y                    # before up3    p1
         y = self.up_3(x, y)
 
         return y, features            # ,features
